@@ -119,10 +119,10 @@ export default Service.extend({
     return {
       unknown: {},
       test: {
-        eth: ``, // INSERT YOUR RPC ENDPOINT KEY HERE
+        eth: `https://mainnet.infura.io/v3/777dea866eb241a6818b154b7b637e66`, // INSERT YOUR RPC ENDPOINT KEY HERE
       },
       production: {
-        eth: ``, // INSERT YOUR RPC ENDPOINT KEY HERE
+        eth: `https://mainnet.infura.io/v3/777dea866eb241a6818b154b7b637e66`, // INSERT YOUR RPC ENDPOINT KEY HERE
       }
     }[this.get('environment') || 'production'][this.get('network') || this.get('defaultNetwork')];
   }),
