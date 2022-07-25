@@ -114,17 +114,17 @@ export default Service.extend({
   provider: computed('environment', 'network', function(){
     // When using hardhat/ganache fork
     if (this.get('useLocalFork'))
-      return "http://127.0.0.1:8545";
+      return "https://rinkeby.infura.io/v3/2aefee3f1fa44a42afc34c20adf86fdb";
 
     return {
       unknown: {},
       test: {
-        eth: `https://mainnet.infura.io/v3/777dea866eb241a6818b154b7b637e66`, // INSERT YOUR RPC ENDPOINT KEY HERE
+        eth: `https://rinkeby.infura.io/v3/2aefee3f1fa44a42afc34c20adf86fdb`, // INSERT YOUR RPC ENDPOINT KEY HERE
       },
       production: {
-        eth: `https://mainnet.infura.io/v3/777dea866eb241a6818b154b7b637e66`, // INSERT YOUR RPC ENDPOINT KEY HERE
+        eth: `https://rinkeby.infura.io/v3/2aefee3f1fa44a42afc34c20adf86fdb`, // INSERT YOUR RPC ENDPOINT KEY HERE
       }
-    }[this.get('environment') || 'production'][this.get('network') || this.get('defaultNetwork')];
+    }[this.get('environment') || 'test'][this.get('network') || this.get('defaultNetwork')];
   }),
 
   network: 'eth',
@@ -212,7 +212,7 @@ export default Service.extend({
   }),
 
   rewarderAddress: computed('environment', 'network', function() {
-    return "0x7732674B5E5FfeC4785AEFdAEa807EeCA383B5e6";
+    return "0x9289411f9558558b9f195ba34263ccbf72b94380"; // merkleDistributor
   }),
 
   rewarder: computed('environment', 'network', function() {
@@ -227,10 +227,10 @@ export default Service.extend({
   contractAddresses: computed('environment', 'network', function() {
     return {
       test: {
-        eth: "0xCb58a99a22991613548E7129e78651e53D214A8c",
+        eth: "0x0930b0c02308467738e4f0f8738a035faaaf6236", // ShibaBurn
       },
       production: {
-        eth: "0x88f09b951F513fe7dA4a34B436a3273DE59F253D",
+        eth: "0x0930b0c02308467738e4f0f8738a035faaaf6236", //ShibaBurn
       },
     }[this.get('environment')] || {};
 	}),
@@ -241,7 +241,7 @@ export default Service.extend({
 
   wethAddress: computed('environment', 'wethAddresses', function() {
     return (this.get('wethAddresses')[this.get('environment')] ||{})[this.get('network')] ||
-      '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
+      '0xc778417e063141139fce010982780140aa0cd5ab';
   }),
 
   wethAddresses: {
@@ -249,7 +249,7 @@ export default Service.extend({
       eth: "0xc778417e063141139fce010982780140aa0cd5ab",
     },
     production: {
-      eth: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
+      eth: '0xc778417e063141139fce010982780140aa0cd5ab',
     }
   },
 
@@ -294,10 +294,10 @@ export default Service.extend({
     }[this.get('environment')];
   }),
 
-  ryoshisVisionAddress: '0x777E2ae845272a2F540ebf6a3D03734A5a8f618e',
+  ryoshisVisionAddress: '0x1cbac06575c30c079df33908234bd96a97422f5f', // ERC20 RYOSI
 
   // This is the address of the current xshib ryoshi reward pool:
-  ryoshiRewardAddress: "0x7732674b5e5ffec4785aefdaea807eeca383b5e6",
+  ryoshiRewardAddress: "0x9289411f9558558b9f195ba34263ccbf72b94380", // MerkleDistributor
 
   ryoshiBurnAddress: computed.reads('shibAddress'),
 
@@ -478,7 +478,7 @@ export default Service.extend({
 
   chainForNetwork: function(network) {
     return {
-      eth: this.get('useLocalFork') ? 31337 : 1,
+      eth: this.get('useLocalFork') ? 31337 : 4,
       // eth: 4,             // tesetnet
     }[network];
   },
@@ -489,7 +489,7 @@ export default Service.extend({
 
   networks: computed(function() {
     return {
-      31337: 'eth',
+      //31337: 'eth',
 
       1: 'eth',
       4: 'eth', //testnet
@@ -623,7 +623,7 @@ export default Service.extend({
   // Add more burnable addresses and coingecko IDs here:
   coinGeckoId: computed('tokenAddress', function() {
     return {
-      '0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce': 'shiba-inu', // shib on mainnet
+      '0xd7e58be1c0090559fd9172c6d54bda49ef87e48d': 'shiba-inu', // shib on mainnet
     }[this.get('tokenAddress').toLowerCase()];
   }),
 
@@ -632,9 +632,9 @@ export default Service.extend({
   allRewardConfigs: computed(function() {
     // MAKE SURE ALL KEYS ARE LOWERCASE!
     return {
-      '0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce': [{ // SHIB on mainnet
-        rewardWalletAddress: "0x7732674b5e5ffec4785aefdaea807eeca383b5e6", // This is the address of the current xshib ryoshi reward pool:
-        tokenAddress: '0x777E2ae845272a2F540ebf6a3D03734A5a8f618e',
+      '0xd7e58be1c0090559fd9172c6d54bda49ef87e48d': [{ // SHIB on mainnet
+        rewardWalletAddress: "0x9289411f9558558b9f195ba34263ccbf72b94380", //MerkleDistributor // This is the address of the current xshib ryoshi reward pool:
+        tokenAddress: '0x1cbac06575c30c079df33908234bd96a97422f5f', //Ryoshi testnet
         rewardStartDate: new Date('feb 27 2022'),
         coinGeckoId: 'ryoshis-vision',
         rewardDurationInDays: 140,
@@ -642,7 +642,7 @@ export default Service.extend({
         rewardTokendecimals: 18,
         rewardName: 'RYOSHI',
       }],
-      '0x27498d86b17d5de38abfac07a8477ed17859aa5c': [{ // Mintable SHIB on Rinkeby network
+      '0xdb60c3e05be9a3d87a3301cbb489e5eea6aeecfc': [{ // Mintable SHIB on Rinkeby network
         rewardWalletAddress: "0xdead000000000000000042069420694206942069", // This is the legendary dead address, it has a growing amoutn of Mintable SHIB
         tokenAddress: '0x27498d86b17d5de38abfac07a8477ed17859aa5c', // SHIBA LOVE (9 deciamls)
         rewardStartDate: new Date('dec 1 2021'),
@@ -704,6 +704,7 @@ export default Service.extend({
           this.set('updaterKey', this.get('updaterKey') + 1);
         });
       }).catch((error) => {
+        console.log("Fernando Error Service: ", error)
       });
 
     });
@@ -856,7 +857,7 @@ export default Service.extend({
   },
 
   environment: computed('currentChain', function() {
-    if ([4,97, 80001].includes(this.get('currentChain')))
+    if ([4].includes(this.get('currentChain')))
       return "test";
     else if ([42161, 31337, 137, 1, 56].includes(this.get('currentChain')))
       return 'production';
