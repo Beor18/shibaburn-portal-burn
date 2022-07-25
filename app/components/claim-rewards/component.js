@@ -43,6 +43,7 @@ export default EmberComponent.extend({
 
     claim() {
       var address = this.get('address');
+      console.log("Fer address: ", address)
       var data = this.get('claims')[address];
       var amount = data.amount;
       var proof = data.proof;
