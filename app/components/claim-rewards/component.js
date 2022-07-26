@@ -32,6 +32,7 @@ export default EmberComponent.extend({
 
     var address = this.get('address');
     var amount = Number(this.get('claims')[address]?.amount || 0);
+    console.log("Amount Fer: ", amount)
     return Math.floor((amount * 100 / Math.pow(10, 18))) / 100;
   }),
 

@@ -635,23 +635,23 @@ export default Service.extend({
       '0xd7e58be1c0090559fd9172c6d54bda49ef87e48d': [{ // SHIB on mainnet
         rewardWalletAddress: "0x42a10bce8648ffdeb0f8dda7199c1043aae4b1d7", //MerkleDistributor // This is the address of the current xshib ryoshi reward pool:
         tokenAddress: '0x1cbac06575c30c079df33908234bd96a97422f5f', //Ryoshi testnet
-        rewardStartDate: new Date('feb 27 2022'),
+        rewardStartDate: new Date('jul 24 2022'),
         coinGeckoId: 'ryoshis-vision',
         rewardDurationInDays: 140,
         rewardDistributions: 10,
         rewardTokendecimals: 18,
         rewardName: 'RYOSHI',
       }],
-      '0xd7e58be1c0090559fd9172c6d54bda49ef87e48d': [{ // Mintable SHIB on Rinkeby network
-        rewardWalletAddress: "0xdead000000000000000042069420694206942069", // This is the legendary dead address, it has a growing amoutn of Mintable SHIB
-        tokenAddress: '0xd7e58be1c0090559fd9172c6d54bda49ef87e48d', // SHIBA LOVE (9 deciamls)
-        rewardStartDate: new Date('dec 1 2021'),
-        coinGeckoId: 'shiba-inu', // For testing purposes, using the price for shiba-inu
-        rewardDurationInDays: 140,
-        rewardDistributions: 10,
-        rewardName: 'rmSHIB',
-        rewardTokendecimals: 9,
-      }]
+      // '0xd7e58be1c0090559fd9172c6d54bda49ef87e48d': [{ // Mintable SHIB on Rinkeby network
+      //   rewardWalletAddress: "0xdead000000000000000042069420694206942069", // This is the legendary dead address, it has a growing amoutn of Mintable SHIB
+      //   tokenAddress: '0xd7e58be1c0090559fd9172c6d54bda49ef87e48d', // SHIBA LOVE (9 deciamls)
+      //   rewardStartDate: new Date('dec 1 2021'),
+      //   coinGeckoId: 'shiba-inu', // For testing purposes, using the price for shiba-inu
+      //   rewardDurationInDays: 140,
+      //   rewardDistributions: 10,
+      //   rewardName: 'rmSHIB',
+      //   rewardTokendecimals: 9,
+      // }]
     };
   }),
 
