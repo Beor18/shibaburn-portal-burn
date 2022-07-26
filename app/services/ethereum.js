@@ -289,7 +289,7 @@ export default Service.extend({
 
   shibSymbol: computed('environment', 'shibAddresses', function() {
     return {
-      test: 'mSHIB',
+      test: 'SHIB',
       production: 'SHIB',
     }[this.get('environment')];
   }),
